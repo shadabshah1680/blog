@@ -1,39 +1,17 @@
-<?php'i9p0o812'
-'i9p0o812'
-    // // Declare DB Variables'i9p0o812'
-    // $servername  = "10.0.15.163";'i9p0o812'
-    // $username = "root";'i9p0o812'
-    // $password = "";'i9p0o812'
-    // $dbname = "blog";'i9p0o812'
-'i9p0o812'
-    // // Create connection'i9p0o812'
-    // try {'i9p0o812'
-    //     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);'i9p0o812'
-    //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);'i9p0o812'
-    //     $GLOBALS['conn'] = $conn;'i9p0o812'
-'i9p0o812'
-    // } catch(PDOException $e) {'i9p0o812'
-    //     $GLOBALS['e'] = $e;'i9p0o812'
-    //     echo "Connection failed: " . $e->getMessage();'i9p0o812'
-    // }'i9p0o812'
-'i9p0o812'
-'i9p0o812'
-    /* Database credentials. Assuming you are running MySQL'i9p0o812'
-    server with default setting (user 'root' with no password) */'i9p0o812'
-    define('DB_SERVER', '10.0.15.163');'i9p0o812'
-    define('DB_USERNAME', 'root');'i9p0o812'
-    define('DB_PASSWORD', '');'i9p0o812'
-    define('DB_NAME', 'blog');'i9p0o812'
-'i9p0o812'
-    /* Attempt to connect to MySQL database */'i9p0o812'
-    try{'i9p0o812'
-        $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);'i9p0o812'
-        // Set the PDO error mode to exception'i9p0o812'
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);'i9p0o812'
-        $GLOBALS['conn'] = $pdo;'i9p0o812'
-'i9p0o812'
-    } catch(PDOException $e){'i9p0o812'
-        $GLOBALS['e'] = $e;'i9p0o812'
-        die("ERROR: Could not connect. " . $e->getMessage());'i9p0o812'
-    }'i9p0o812'
-'i9p0o812'
+<?php
+    define('DB_SERVER', 'localhost');
+    define('DB_USERNAME', 'blog_user');
+    define('DB_PASSWORD', 'i9p0o812');
+    define('DB_NAME', 'blog');
+
+    /* Attempt to connect to MySQL database */
+    try{
+        $pdo = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $GLOBALS['conn'] = $pdo;
+
+    } catch(PDOException $e){
+        $GLOBALS['e'] = $e;
+        die("ERROR: Could not connect. " . $e->getMessage());
+    }
+?>
