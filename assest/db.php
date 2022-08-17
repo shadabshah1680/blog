@@ -1,8 +1,8 @@
 <?php
     define('DB_SERVER', 'localhost');
-    define('DB_USERNAME', 'blog_user');
-    define('DB_PASSWORD', 'i9p0o812');
-    define('DB_NAME', 'blog');
+    define('DB_USERNAME', 'user');
+    define('DB_PASSWORD', 'pass');
+    define('DB_NAME', 'db_name');
 
     /* Attempt to connect to MySQL database */
     try{
