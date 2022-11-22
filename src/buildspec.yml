@@ -7,6 +7,8 @@ phases:
     commands:
       - yarn install
       - npx ng build
+      - ls
+      - pwd
       - aws s3 sync $CODEBUILD_SRC_DIR/dist/apps/private s3://$BUCKET_NAME/ --delete --only-show-errors
   post_build:
     commands:
