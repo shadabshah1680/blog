@@ -7,9 +7,7 @@ phases:
     commands:
       - yarn install
       - npx ng build
+      - aws s3 sync $CODEBUILD_SRC_DIR/dist/apps/private s3://$BUCKET_NAME/ --delete --only-show-errors
   post_build:
     commands:
-      - zip -r -q build.zip dist/
-artifacts:
-  files:
-    - build.zip
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths "/*"
