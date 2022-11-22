@@ -10,11 +10,11 @@ phases:
       - ls
       - pwd
       - echo $BUCKET_NAME
-      - aws s3 sync dist/apps/private s3://"${BUCKET_NAME}"/ --delete --only-show-errors
-      - BUCKET_NAME=cloudfront-content-sharing-bucket
-      - aws s3 sync dist/apps/private s3://"${BUCKET_NAME}"/ --delete --only-show-errors
+      - ls -ali dist
       - echo $CLOUDFRONT_ID
+      - aws s3 sync dist/apps s3://`echo $BUCKET_NAME`/ --delete --only-show-errors
+      - aws s3 sync dist/apps s3://$BUCKET_NAME/ --delete --only-show-errors
   post_build:
     commands:
-      - aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_ID}" --paths "/*"
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths "/*"
 
