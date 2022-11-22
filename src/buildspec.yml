@@ -14,7 +14,6 @@ phases:
       - ls -ali dist
       - echo $CLOUDFRONT_ID
       - aws s3 sync dist/ s3://$BUCKET_NAME/ --delete --only-show-errors
-      - aws s3 sync dist/apps s3://$BUCKET_NAME/ --delete --only-show-errors
   post_build:
     commands:
       - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths "/*"
