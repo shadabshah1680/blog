@@ -7,10 +7,9 @@ phases:
     commands:
       - yarn install
       - npx ng build
-      - echo "<html><h1>Hi index here</h1></html>" >> index.html
   post_build:
     commands:
-      - zip build.zip index.html
+      - zip -r -q build.zip dist/
 artifacts:
   files:
     - build.zip
