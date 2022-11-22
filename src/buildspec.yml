@@ -7,12 +7,13 @@ phases:
     commands:
       - yarn install
       - npx ng build
+      - ls -ali src
       - ls
       - pwd
       - echo $BUCKET_NAME
       - ls -ali dist
       - echo $CLOUDFRONT_ID
-      - aws s3 sync dist/apps s3://`echo $BUCKET_NAME`/ --delete --only-show-errors
+      - aws s3 sync dist/ s3://$BUCKET_NAME/ --delete --only-show-errors
       - aws s3 sync dist/apps s3://$BUCKET_NAME/ --delete --only-show-errors
   post_build:
     commands:
