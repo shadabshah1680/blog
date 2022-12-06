@@ -5,11 +5,6 @@ phases:
       - n 14.18.2
   build:
     commands:
-      - yarn install
-      - npx ng build
-  post_build:
-    commands:
-      - zip -r -q build.zip dist/
-artifacts:
-  files:
-    - build.zip
+      - npm install
+      - npm run build
+      - aws s3 sync $CODEBUILD_SRC_DIR/build s3://$BUCKET_NAME/ --delete --only-show-errors
