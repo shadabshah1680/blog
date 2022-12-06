@@ -4,5 +4,8 @@ phases:
     commands:
       - unzip -q $CODEBUILD_SRC_DIR/build.zip
       - ls -la $CODEBUILD_SRC_DIR
-      - ls -la $CODEBUILD_SRC_DIR/build
-      - aws s3 sync $CODEBUILD_SRC_DIR/build s3://$BUCKET_NAME/ --delete --only-show-errors
+      - ls -la $CODEBUILD_SRC_DIR/dist
+      - aws s3 sync $CODEBUILD_SRC_DIR/dist/apps/private s3://$BUCKET_NAME/ --delete --only-show-errors
+  post_build:
+    commands:
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths "/*"
