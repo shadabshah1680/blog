@@ -2,19 +2,22 @@ version: 0.2
 phases:
   install:
     commands:
-      - n 14.18.2
+      - n 19.1.0
   build:
     commands:
-      - yarn install
-      - npx ng build
+      - npm install
+      - npm build
       - ls -ali src
       - ls
       - pwd
       - echo $BUCKET_NAME
-      - ls -ali dist
-      - echo $CLOUDFRONT_ID
-      - aws s3 sync dist/ s3://$BUCKET_NAME/ --delete --only-show-errors
+      - ls -ali build
   post_build:
     commands:
-      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths "/*"
+      - zip -r -q build.zip build/
+      - echo $CLOUDFRONT_ID
+      - aws s3 sync build/ s3://$BUCKET_NAME/ --delete --only-show-errors
+artifacts:
+  files:
+    - build.zip
 

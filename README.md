@@ -1,102 +1,70 @@
-<img src='https://github.com/byangular/angular-github-actions-s3-deploy/raw/images/architecture.png' border='0' alt='architecture' />
+# Getting Started with Create React App
 
-Implementing automatic distribution of [AWS](https://aws.amazon.com/ko/) product [S3](https://aws.amazon.com/ko/s3/) through [GitHub Actions](https://github.com/features/actions) operation.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Notifications over [Slack](https://slack.com/intl/en-kr/) using through [GitHub Actions](https://github.com/features/actions)
+## Available Scripts
 
-> Create smart aws diagrams [Cloudcraft](https://cloudcraft.co/)
+In the project directory, you can run:
 
-<br />
+### `npm start`
 
-## What is AWS ?
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Whether you're looking for compute power, database storage, content delivery, or other features with services operated by Amazon, 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-AWS has services to help you build sophisticated applications with increased flexibility, scalability, and reliability.
+### `npm test`
 
-## What is S3 ?
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.
+### `npm run build`
 
-This means customers of all sizes and industries can use it to store and protect any amount of data for a range of use cases, such as websites, mobile applications, backup and restore, archive, enterprise applications, IoT devices, and big data analytics.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-▾ Amazon S3 works
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-<img src='https://github.com/byangular/angular-github-actions-s3-deploy/raw/images/s3-works.png' border='0' alt='s3-works' />
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## What is GitHub Actions ?
+### `npm run eject`
 
-GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. 
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-Make code reviews, branch management, and issue triaging work the way you want.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## What is Slack ?
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-Slack is a collaboration hub that can replace email to help you and your team work together seamlessly.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-It’s designed to support the way people naturally work together, so you can collaborate with people online as efficiently as you do face-to-face.
+## Learn More
 
-### Add a Workflows File to Your Source Repository
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Github Actions to build your workflows yml files.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Add a `*.yml` file to your source code repository to tell Github Actions.
+### Code Splitting
 
-[GitHub Actions](https://github.com/features/actions)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-▾ build.yml
+### Analyzing the Bundle Size
 
-```bash
-name: S3 Deploy
-on:
-  push:
-    branches:
-      - master
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@master
+### Making a Progressive Web App
 
-      - name: Cache node modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-      - name: Install
-        run: npm install
+### Advanced Configuration
 
-      - name: Lint
-        run: npm run lint
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-      - name: Test
-        run: npm run test
+### Deployment
 
-      - name: Build
-        run: npm run build
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-      - name: Deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws s3 cp \
-            --recursive \
-            --region ap-northeast-2 \
-            [dist folder] s3://[s3 bucket name]
+### `npm run build` fails to minify
 
-      - name: Notification
-        uses: 8398a7/action-slack@v2.6.0
-        with:
-          status: ${{ job.status }}
-          author_name: [slack chatbot name]
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
