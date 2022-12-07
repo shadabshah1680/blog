@@ -9,7 +9,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - zip -r -q build.zip dist/
+      - zip -r -q build.zip build/
 artifacts:
   files:
     - build.zip
