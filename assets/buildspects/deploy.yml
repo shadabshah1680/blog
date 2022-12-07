@@ -2,7 +2,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - unzip -q $CODEBUILD_SRC_DIR/build.zip
+      - unzip -q $CODEBUILD_SRC_DIR_Artifact_Build_Build/build.zip
       - aws s3 sync $CODEBUILD_SRC_DIR/build s3://$BUCKET_NAME/ --delete --only-show-errors  # post_build:
   #   commands:
   #     - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths "/*"
